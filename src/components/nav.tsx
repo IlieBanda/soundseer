@@ -16,13 +16,7 @@ export function Nav({ user }: { user: NavUser }) {
             href="/discover"
             className="flex items-center gap-2 font-semibold tracking-tight"
           >
-            <Image
-              src="/logo.png"
-              alt=""
-              width={24}
-              height={24}
-              className="rounded"
-            />
+            <Image src="/logo.png" alt="" width={30} height={35} />
             Soundseer
           </Link>
           <nav className="flex gap-4 text-sm text-zinc-400">
