@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  PROCESSING
+  AVAILABLE
+}
+
+model User {
+  id             String         @id @default(cuid())
+  email          String         @unique
+  passwordHash   String
+  displayName    String
+  role           Role           @default(USER)
+  canAutoApprove Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  sessions       Session[]
+  requests       MusicRequest[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model MusicRequest {
+  id            String        @id @default(cuid())
+  mbid          String
+  artistMbid    String
+  title         String
+  artistName    String
+  coverUrl      String?
+  status        RequestStatus @default(PENDING)
+  lidarrAlbumId Int?
+  requestedById String
+  requestedBy   User          @relation(fields: [requestedById], references: [id], onDelete: Cascade)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([requestedById])
+  @@index([status])
+}
+
+model Settings {
+  id                     Int     @id @default(1)
+  lidarrUrl              String?
+  lidarrApiKey           String?
+  lidarrRootFolder       String?
+  lidarrQualityProfileId Int?
+  lidarrMetadataProfileId Int?
+  discordWebhookUrl      String?
+  telegramBotToken       String?
+  telegramChatId         String?
+  autoApproveDefault     Boolean @default(false)
+}

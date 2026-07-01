@@ -1,0 +1,11 @@
+services:
+  soundseer:
+    build: .
+    container_name: soundseer
+    restart: unless-stopped
+    ports:
+      - "5500:3000"
+    environment:
+      - SESSION_SECRET=${SESSION_SECRET}
+    volumes:
+      - ./data:/app/data

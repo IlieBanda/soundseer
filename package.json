@@ -1,0 +1,54 @@
+{
+  "name": "soundseer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Jellyseerr, but for music. Request albums, approve them, and let Lidarr fetch them into your library.",
+  "license": "MIT",
+  "author": "Ilia Banda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IlieBanda/soundseer.git"
+  },
+  "keywords": [
+    "lidarr",
+    "musicbrainz",
+    "jellyseerr",
+    "self-hosted",
+    "music",
+    "media-server",
+    "nextjs"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.11.1",
+    "jose": "^6.2.3",
+    "next": "16.2.9",
+    "node-cron": "^4.5.0",
+    "prisma": "^7.8.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
+  }
+}
