@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Soundseer",
   description: "Request music for your library, fulfilled by Lidarr.",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

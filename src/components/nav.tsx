@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { logout } from "@/app/actions/auth";
 
@@ -11,7 +12,11 @@ export function Nav({ user }: { user: NavUser }) {
     <header className="border-b border-zinc-800">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <div className="flex items-center gap-6">
-          <Link href="/discover" className="font-semibold tracking-tight">
+          <Link
+            href="/discover"
+            className="flex items-center gap-2 font-semibold tracking-tight"
+          >
+            <Image src="/logo.svg" alt="" width={24} height={24} />
             Soundseer
           </Link>
           <nav className="flex gap-4 text-sm text-zinc-400">
