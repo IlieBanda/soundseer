@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Soundseer",
   description: "Request music for your library, fulfilled by Lidarr.",
   icons: {
-    icon: "/logo.svg",
+    icon: "/logo.png",
   },
 };
 
