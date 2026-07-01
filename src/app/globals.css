@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090b;
+  --foreground: #f4f4f5;
 }
 
 @theme inline {
@@ -12,15 +12,72 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scrollbar-color: #3f3f46 transparent;
+}
+
+::selection {
+  background: #34d399;
+  color: #052e16;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(60rem 32rem at 12% -10%, rgba(52, 211, 153, 0.12), transparent 60%),
+    radial-gradient(50rem 28rem at 100% 0%, rgba(163, 230, 53, 0.08), transparent 55%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .ss-card {
+    @apply rounded-xl border border-zinc-800/80 bg-zinc-900/60 backdrop-blur-sm
+      shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset]
+      transition-all duration-200;
+  }
+
+  .ss-card-hover {
+    @apply hover:-translate-y-0.5 hover:border-emerald-700/60 hover:shadow-[0_8px_30px_-12px_rgba(16,185,129,0.35)];
+  }
+
+  .ss-input {
+    @apply rounded-lg border border-zinc-700/80 bg-zinc-950/80 px-3 py-2 text-sm text-zinc-100
+      outline-none transition-colors duration-150
+      placeholder:text-zinc-600
+      focus:border-emerald-500/70 focus:ring-2 focus:ring-emerald-500/20;
+  }
+
+  .ss-btn-primary {
+    @apply relative inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2
+      text-sm font-medium text-zinc-950
+      bg-gradient-to-br from-lime-300 to-emerald-500
+      shadow-[0_1px_0_0_rgba(255,255,255,0.35)_inset,0_8px_20px_-8px_rgba(16,185,129,0.55)]
+      transition-all duration-150
+      hover:brightness-110 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.35)_inset,0_10px_24px_-8px_rgba(16,185,129,0.7)]
+      active:brightness-95 active:scale-[0.98]
+      disabled:opacity-50 disabled:hover:brightness-100 disabled:active:scale-100;
+  }
+
+  .ss-btn-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-700
+      bg-zinc-900/60 px-3 py-1.5 text-xs font-medium text-zinc-300
+      transition-all duration-150
+      hover:border-emerald-600/70 hover:text-emerald-300 hover:bg-emerald-950/30
+      disabled:opacity-50;
+  }
+
+  .ss-btn-danger {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-red-900/60
+      bg-red-950/20 px-3 py-1.5 text-xs font-medium text-red-400
+      transition-all duration-150
+      hover:border-red-700 hover:bg-red-950/40;
+  }
+
+  .ss-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .ss-glow-text {
+    @apply bg-gradient-to-br from-lime-300 via-emerald-300 to-emerald-500 bg-clip-text text-transparent;
+  }
 }

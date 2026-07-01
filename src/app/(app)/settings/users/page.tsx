@@ -9,54 +9,61 @@ export default async function UsersSettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Пользователи</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">
+        <span className="ss-glow-text">Пользователи</span>
+      </h1>
       <p className="mt-2 mb-6 text-zinc-400">
         Управление ролями и автоодобрением запросов.
       </p>
 
-      <div className="mb-8 flex flex-col divide-y divide-zinc-800 rounded-lg border border-zinc-800">
+      <div className="mb-8 flex flex-col gap-2">
         {users.map((user) => (
           <form
             key={user.id}
             action={updateUserAccess}
-            className="flex flex-wrap items-center gap-4 px-4 py-3"
+            className="ss-card flex flex-wrap items-center gap-4 px-4 py-3"
           >
             <input type="hidden" name="userId" value={user.id} />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-lime-300/20 to-emerald-600/30 text-sm font-semibold text-emerald-300 ring-1 ring-emerald-500/20">
+              {user.displayName.trim().charAt(0).toUpperCase() || "?"}
+            </span>
             <div className="min-w-0 flex-1">
-              <p className="truncate font-medium">{user.displayName}</p>
+              <p className="truncate font-medium text-zinc-100">
+                {user.displayName}
+              </p>
               <p className="truncate text-sm text-zinc-500">{user.email}</p>
             </div>
 
             {user.id === admin.id ? (
-              <span className="text-xs text-zinc-500">Это вы</span>
+              <span className="ss-badge bg-zinc-800 text-zinc-400 ring-1 ring-zinc-700">
+                Это вы
+              </span>
             ) : (
               <>
                 <select
                   name="role"
                   defaultValue={user.role}
-                  className="rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1 text-sm"
+                  className="ss-input py-1.5"
                 >
                   <option value="USER">USER</option>
                   <option value="ADMIN">ADMIN</option>
                 </select>
-                <label className="flex items-center gap-1 text-sm text-zinc-400">
+                <label className="flex items-center gap-1.5 text-sm text-zinc-400">
                   <input
                     type="checkbox"
                     name="canAutoApprove"
                     defaultChecked={user.canAutoApprove}
+                    className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-emerald-500"
                   />
                   Автоодобрение
                 </label>
-                <button
-                  type="submit"
-                  className="rounded-md border border-zinc-700 px-2 py-1 text-xs hover:border-zinc-500"
-                >
+                <button type="submit" className="ss-btn-secondary">
                   Сохранить
                 </button>
                 <button
                   type="submit"
                   formAction={deleteUser}
-                  className="rounded-md border border-red-800 px-2 py-1 text-xs text-red-400 hover:bg-red-900/30"
+                  className="ss-btn-danger"
                 >
                   Удалить
                 </button>
@@ -66,7 +73,9 @@ export default async function UsersSettingsPage() {
         ))}
       </div>
 
-      <h2 className="mb-3 text-lg font-medium">Добавить пользователя</h2>
+      <h2 className="mb-3 text-lg font-medium text-zinc-200">
+        Добавить пользователя
+      </h2>
       <CreateUserForm />
     </div>
   );

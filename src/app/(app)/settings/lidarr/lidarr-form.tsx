@@ -52,9 +52,9 @@ export function LidarrForm(props: Props) {
   }
 
   return (
-    <form action={formAction} className="flex max-w-md flex-col gap-4">
-      <div className="flex flex-col gap-1">
-        <label htmlFor="lidarrUrl" className="text-sm text-zinc-300">
+    <form action={formAction} className="ss-card flex max-w-md flex-col gap-4 p-5">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="lidarrUrl" className="text-sm text-zinc-400">
           URL Lidarr
         </label>
         <input
@@ -64,11 +64,11 @@ export function LidarrForm(props: Props) {
           onChange={(e) => setUrl(e.target.value)}
           placeholder="http://localhost:8686"
           required
-          className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+          className="ss-input"
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <label htmlFor="lidarrApiKey" className="text-sm text-zinc-300">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="lidarrApiKey" className="text-sm text-zinc-400">
           API-ключ
         </label>
         <input
@@ -77,7 +77,7 @@ export function LidarrForm(props: Props) {
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
           required
-          className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+          className="ss-input"
         />
       </div>
 
@@ -85,14 +85,14 @@ export function LidarrForm(props: Props) {
         type="button"
         onClick={loadOptions}
         disabled={loadingOptions || !url || !apiKey}
-        className="self-start rounded-md border border-zinc-700 px-3 py-1.5 text-xs hover:border-zinc-500 disabled:opacity-50"
+        className="ss-btn-secondary self-start"
       >
         {loadingOptions ? "Загрузка..." : "Загрузить профили из Lidarr"}
       </button>
       {loadError && <p className="text-sm text-red-400">{loadError}</p>}
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="lidarrRootFolder" className="text-sm text-zinc-300">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="lidarrRootFolder" className="text-sm text-zinc-400">
           Корневая папка
         </label>
         {rootFolders.length > 0 ? (
@@ -100,7 +100,7 @@ export function LidarrForm(props: Props) {
             id="lidarrRootFolder"
             name="lidarrRootFolder"
             defaultValue={props.lidarrRootFolder}
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           >
             {rootFolders.map((rf) => (
               <option key={rf.id} value={rf.path}>
@@ -115,13 +115,13 @@ export function LidarrForm(props: Props) {
             defaultValue={props.lidarrRootFolder}
             placeholder="/music"
             required
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           />
         )}
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="lidarrQualityProfileId" className="text-sm text-zinc-300">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="lidarrQualityProfileId" className="text-sm text-zinc-400">
           Профиль качества
         </label>
         {qualityProfiles.length > 0 ? (
@@ -129,7 +129,7 @@ export function LidarrForm(props: Props) {
             id="lidarrQualityProfileId"
             name="lidarrQualityProfileId"
             defaultValue={props.lidarrQualityProfileId ?? undefined}
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           >
             {qualityProfiles.map((p) => (
               <option key={p.id} value={p.id}>
@@ -144,13 +144,13 @@ export function LidarrForm(props: Props) {
             type="number"
             defaultValue={props.lidarrQualityProfileId ?? undefined}
             required
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           />
         )}
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="lidarrMetadataProfileId" className="text-sm text-zinc-300">
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="lidarrMetadataProfileId" className="text-sm text-zinc-400">
           Профиль метаданных
         </label>
         {metadataProfiles.length > 0 ? (
@@ -158,7 +158,7 @@ export function LidarrForm(props: Props) {
             id="lidarrMetadataProfileId"
             name="lidarrMetadataProfileId"
             defaultValue={props.lidarrMetadataProfileId ?? undefined}
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           >
             {metadataProfiles.map((p) => (
               <option key={p.id} value={p.id}>
@@ -173,7 +173,7 @@ export function LidarrForm(props: Props) {
             type="number"
             defaultValue={props.lidarrMetadataProfileId ?? undefined}
             required
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           />
         )}
       </div>
@@ -182,11 +182,7 @@ export function LidarrForm(props: Props) {
       {state?.success && (
         <p className="text-sm text-emerald-400">Настройки сохранены</p>
       )}
-      <button
-        type="submit"
-        disabled={pending}
-        className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-500 disabled:opacity-50"
-      >
+      <button type="submit" disabled={pending} className="ss-btn-primary">
         {pending ? "Проверка соединения..." : "Сохранить"}
       </button>
     </form>

@@ -64,16 +64,30 @@ export function DiscoverSearch() {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Найти артиста..."
-        value={query}
-        onChange={(e) => handleChange(e.target.value)}
-        className="w-full max-w-md rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
-      />
+      <div className="relative max-w-md">
+        <svg
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+        </svg>
+        <input
+          type="text"
+          placeholder="Найти артиста..."
+          value={query}
+          onChange={(e) => handleChange(e.target.value)}
+          className="ss-input w-full pl-9"
+        />
+        {loading && (
+          <span className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin rounded-full border-2 border-emerald-500/30 border-t-emerald-400" />
+        )}
+      </div>
 
       <div className="mt-6">
-        {loading && <p className="text-sm text-zinc-500">Поиск...</p>}
         {error && <p className="text-sm text-red-400">{error}</p>}
         {!loading && !error && trimmedQuery && artists.length === 0 && (
           <p className="text-sm text-zinc-500">Ничего не найдено.</p>

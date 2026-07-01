@@ -8,7 +8,9 @@ export default async function NotificationsSettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Уведомления</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">
+        <span className="ss-glow-text">Уведомления</span>
+      </h1>
       <p className="mt-2 mb-6 text-zinc-400">
         Получайте уведомления об одобрении, отклонении и доступности альбомов.
       </p>

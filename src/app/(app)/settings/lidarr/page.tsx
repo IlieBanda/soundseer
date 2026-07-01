@@ -8,7 +8,9 @@ export default async function LidarrSettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Lidarr</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">
+        <span className="ss-glow-text">Lidarr</span>
+      </h1>
       <p className="mt-2 mb-6 text-zinc-400">
         Подключите Lidarr, чтобы одобренные запросы автоматически скачивались.
       </p>

@@ -45,15 +45,29 @@ export default async function ArtistPage({
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">{artist.name}</h1>
-      {artist.disambiguation && (
-        <p className="mt-1 text-zinc-500">{artist.disambiguation}</p>
-      )}
-      <p className="mt-1 text-sm text-zinc-500">
-        {[artist.type, artist.country].filter(Boolean).join(" · ")}
-      </p>
+      <div className="ss-card relative overflow-hidden p-6">
+        <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-500/10 blur-3xl" />
+        <h1 className="text-3xl font-semibold tracking-tight">
+          {artist.name}
+        </h1>
+        {artist.disambiguation && (
+          <p className="mt-1 text-zinc-500">{artist.disambiguation}</p>
+        )}
+        <p className="mt-2 flex flex-wrap gap-2 text-xs text-zinc-500">
+          {[artist.type, artist.country].filter(Boolean).map((v) => (
+            <span
+              key={v}
+              className="rounded-full border border-zinc-800 bg-zinc-950/60 px-2.5 py-0.5"
+            >
+              {v}
+            </span>
+          ))}
+        </p>
+      </div>
 
-      <h2 className="mt-8 mb-4 text-lg font-medium">Дискография</h2>
+      <h2 className="mt-8 mb-4 text-lg font-medium text-zinc-200">
+        Дискография
+      </h2>
       {releaseGroups.length === 0 ? (
         <p className="text-sm text-zinc-500">Альбомы не найдены.</p>
       ) : (
@@ -63,10 +77,13 @@ export default async function ArtistPage({
             const existingRequest = requestsByMbid.get(rg.id);
 
             return (
-              <div key={rg.id} className="flex flex-col gap-2">
+              <div
+                key={rg.id}
+                className="ss-card ss-card-hover flex flex-col gap-2 p-2"
+              >
                 <AlbumCover src={coverArtUrl(rg.id)} alt={rg.title} />
-                <div>
-                  <p className="text-sm font-medium leading-tight">
+                <div className="px-1">
+                  <p className="text-sm font-medium leading-tight text-zinc-100">
                     {rg.title}
                   </p>
                   <p className="text-xs text-zinc-500">
@@ -74,7 +91,7 @@ export default async function ArtistPage({
                     {rg["primary-type"]}
                   </p>
                 </div>
-                <div className="mt-1">
+                <div className="mt-1 px-1 pb-1">
                   {inLibrary?.available ? (
                     <RequestStatusBadge status="AVAILABLE" />
                   ) : existingRequest ? (

@@ -9,34 +9,57 @@ type NavUser = {
 
 export function Nav({ user }: { user: NavUser }) {
   return (
-    <header className="border-b border-zinc-800">
+    <header className="sticky top-0 z-20 border-b border-zinc-800/80 bg-zinc-950/70 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <Link
             href="/discover"
-            className="flex items-center gap-2 font-semibold tracking-tight"
+            className="group flex items-center gap-2 font-semibold tracking-tight"
           >
-            <Image src="/logo.png" alt="" width={30} height={35} />
-            Soundseer
+            <span className="relative flex items-center justify-center">
+              <span className="absolute inset-0 rounded-full bg-emerald-400/30 blur-md transition-opacity duration-300 group-hover:opacity-100 opacity-0" />
+              <Image
+                src="/logo.png"
+                alt=""
+                width={28}
+                height={33}
+                className="relative"
+              />
+            </span>
+            <span className="ss-glow-text text-base">Soundseer</span>
           </Link>
-          <nav className="flex gap-4 text-sm text-zinc-400">
-            <Link href="/discover" className="hover:text-zinc-100">
+          <nav className="flex gap-5 text-sm text-zinc-400">
+            <Link
+              href="/discover"
+              className="transition-colors hover:text-emerald-300"
+            >
               Поиск
             </Link>
-            <Link href="/requests" className="hover:text-zinc-100">
+            <Link
+              href="/requests"
+              className="transition-colors hover:text-emerald-300"
+            >
               Запросы
             </Link>
             {user.role === "ADMIN" && (
-              <Link href="/settings" className="hover:text-zinc-100">
+              <Link
+                href="/settings"
+                className="transition-colors hover:text-emerald-300"
+              >
                 Настройки
               </Link>
             )}
           </nav>
         </div>
         <div className="flex items-center gap-3 text-sm text-zinc-400">
-          <span>{user.displayName}</span>
+          <span className="hidden sm:inline text-zinc-500">
+            {user.displayName}
+          </span>
           <form action={logout}>
-            <button type="submit" className="hover:text-zinc-100">
+            <button
+              type="submit"
+              className="transition-colors hover:text-emerald-300"
+            >
               Выйти
             </button>
           </form>

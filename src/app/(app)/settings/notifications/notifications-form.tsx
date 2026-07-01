@@ -28,9 +28,9 @@ export function NotificationsForm({
 
   return (
     <div className="flex max-w-md flex-col gap-6">
-      <form action={saveAction} className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1">
-          <label htmlFor="discordWebhookUrl" className="text-sm text-zinc-300">
+      <form action={saveAction} className="ss-card flex flex-col gap-4 p-5">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="discordWebhookUrl" className="text-sm text-zinc-400">
             Discord Webhook URL
           </label>
           <input
@@ -38,29 +38,29 @@ export function NotificationsForm({
             name="discordWebhookUrl"
             defaultValue={discordWebhookUrl}
             placeholder="https://discord.com/api/webhooks/..."
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           />
         </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="telegramBotToken" className="text-sm text-zinc-300">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="telegramBotToken" className="text-sm text-zinc-400">
             Telegram Bot Token
           </label>
           <input
             id="telegramBotToken"
             name="telegramBotToken"
             defaultValue={telegramBotToken}
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           />
         </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="telegramChatId" className="text-sm text-zinc-300">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="telegramChatId" className="text-sm text-zinc-400">
             Telegram Chat ID
           </label>
           <input
             id="telegramChatId"
             name="telegramChatId"
             defaultValue={telegramChatId}
-            className="rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm outline-none focus:border-zinc-500"
+            className="ss-input"
           />
         </div>
         {saveState?.error && (
@@ -69,11 +69,7 @@ export function NotificationsForm({
         {saveState?.success && (
           <p className="text-sm text-emerald-400">Настройки сохранены</p>
         )}
-        <button
-          type="submit"
-          disabled={savePending}
-          className="rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-500 disabled:opacity-50"
-        >
+        <button type="submit" disabled={savePending} className="ss-btn-primary">
           {savePending ? "Сохранение..." : "Сохранить"}
         </button>
       </form>
@@ -82,7 +78,7 @@ export function NotificationsForm({
         <button
           type="submit"
           disabled={testPending}
-          className="rounded-md border border-zinc-700 px-4 py-2 text-sm hover:border-zinc-500 disabled:opacity-50"
+          className="ss-btn-secondary w-full py-2 text-sm"
         >
           {testPending ? "Отправка..." : "Отправить тестовое уведомление"}
         </button>

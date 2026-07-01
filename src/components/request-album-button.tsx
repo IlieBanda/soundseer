@@ -21,7 +21,20 @@ export function RequestAlbumButton({
   const [state, formAction, pending] = useActionState(requestAlbum, undefined);
 
   if (state?.success) {
-    return <p className="text-xs text-emerald-400">Запрос отправлен</p>;
+    return (
+      <p className="ss-badge bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
+        <svg
+          className="h-3 w-3"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+        >
+          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        Запрос отправлен
+      </p>
+    );
   }
 
   return (
@@ -31,11 +44,7 @@ export function RequestAlbumButton({
       <input type="hidden" name="title" value={title} />
       <input type="hidden" name="artistName" value={artistName} />
       {coverUrl && <input type="hidden" name="coverUrl" value={coverUrl} />}
-      <button
-        type="submit"
-        disabled={pending}
-        className="w-full rounded-md border border-zinc-700 px-2 py-1 text-xs text-zinc-300 transition-colors hover:border-emerald-600 hover:text-emerald-400 disabled:opacity-50"
-      >
+      <button type="submit" disabled={pending} className="ss-btn-secondary w-full">
         {pending ? "Отправка..." : "Запросить"}
       </button>
       {state?.error && <p className="mt-1 text-xs text-red-400">{state.error}</p>}

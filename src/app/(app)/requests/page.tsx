@@ -15,7 +15,9 @@ export default async function RequestsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Запросы</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">
+        <span className="ss-glow-text">Запросы</span>
+      </h1>
       <p className="mt-2 mb-6 text-zinc-400">
         {isAdmin
           ? "Все запросы пользователей на добавление музыки."
@@ -25,14 +27,16 @@ export default async function RequestsPage() {
       {requests.length === 0 ? (
         <p className="text-sm text-zinc-500">Пока нет запросов.</p>
       ) : (
-        <div className="flex flex-col divide-y divide-zinc-800 rounded-lg border border-zinc-800">
+        <div className="flex flex-col gap-2">
           {requests.map((request) => (
             <div
               key={request.id}
-              className="flex items-center justify-between gap-4 px-4 py-3"
+              className="ss-card flex items-center justify-between gap-4 px-4 py-3"
             >
               <div className="min-w-0">
-                <p className="truncate font-medium">{request.title}</p>
+                <p className="truncate font-medium text-zinc-100">
+                  {request.title}
+                </p>
                 <p className="truncate text-sm text-zinc-500">
                   {request.artistName}
                   {isAdmin && ` · запросил ${request.requestedBy.displayName}`}
@@ -43,18 +47,12 @@ export default async function RequestsPage() {
                 {isAdmin && request.status === "PENDING" && (
                   <div className="flex gap-2">
                     <form action={approveRequest.bind(null, request.id)}>
-                      <button
-                        type="submit"
-                        className="rounded-md border border-emerald-700 px-2 py-1 text-xs text-emerald-400 hover:bg-emerald-900/30"
-                      >
+                      <button type="submit" className="ss-btn-secondary">
                         Одобрить
                       </button>
                     </form>
                     <form action={declineRequest.bind(null, request.id)}>
-                      <button
-                        type="submit"
-                        className="rounded-md border border-red-800 px-2 py-1 text-xs text-red-400 hover:bg-red-900/30"
-                      >
+                      <button type="submit" className="ss-btn-danger">
                         Отклонить
                       </button>
                     </form>
